@@ -13,3 +13,7 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+.env
+docker/mysql/data
+docker/mysql/my.cnf
+.idea
