@@ -1,8 +1,8 @@
 package domain
 
 type Site struct {
-	ID	int
-	URL	string
+	ID  int
+	URL string
 	Dnt bool
 }
 
