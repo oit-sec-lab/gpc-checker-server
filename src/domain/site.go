@@ -1,9 +1,9 @@
 package domain
 
 type Site struct {
-	ID  int
-	URL string
-	Dnt bool
+	id  int
+	url string
+	gcp bool
 }
 
 type Sites []Site
