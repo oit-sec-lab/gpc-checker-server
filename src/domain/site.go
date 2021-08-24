@@ -3,7 +3,7 @@ package domain
 type Site struct {
 	id  int
 	url string
-	gcp bool
+	gpc bool
 }
 
 type Sites []Site
