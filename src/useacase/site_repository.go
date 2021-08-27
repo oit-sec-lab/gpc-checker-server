@@ -1,6 +1,6 @@
 package useacase
 
-import "../domain"
+import "github.com/oit-sec-lab/dnt-verify-server/src/domain"
 
 type SiteRepository interface {
 	Store(domain.Site) (int, error)
