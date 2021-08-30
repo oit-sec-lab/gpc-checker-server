@@ -4,7 +4,8 @@ import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities"
 )
 
-type SiteRepository interface {
-	Store(entities.Site) (int, error)
-	FindByID(int) (entities.Site, error)
+type ISiteRepository interface {
+	Store(entities.Site) error
+	FindByURL(string) (entities.Site, error)
+	CheckGPC(string) (bool, error)
 }
