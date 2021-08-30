@@ -1,4 +1,4 @@
-package useacase
+package usecase
 
 type SiteInteractor struct {
 	SiteRepository SiteRepository
