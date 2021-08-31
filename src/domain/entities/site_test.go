@@ -1,7 +1,7 @@
-package domain_test
+package entities_test
 
 import (
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain"
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities"
 	"testing"
 )
 
@@ -21,7 +21,7 @@ func TestNewSite(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s, e := domain.NewSite(0, tt.url, tt.gpc)
+			s, e := entities.NewSite(0, tt.url, tt.gpc)
 
 			if !tt.shouldFail && e != nil {
 				t.Fatalf("unexpected error: %v", e)
