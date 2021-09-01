@@ -2,9 +2,9 @@ package controllers
 
 import
 (
-	"domain"
-	"interfaces/database"
-	"usecase"
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain"
+	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
+	"github.com/oit-sec-lab/dnt-verify-server/src/usecase"
 	"strconv"
 )
 
@@ -34,7 +34,7 @@ func (controller *SiteController) Create (c Context) {
 }
 
 func (controller *SiteController) Index(c Context) {
-    users, err := controller.Interactor.Sites()
+    sites, err := controller.Interactor.Sites()
     if err != nil {
         c.JSON(500, NewError(err))
         return
