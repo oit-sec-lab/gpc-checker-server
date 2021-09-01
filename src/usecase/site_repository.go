@@ -1,4 +1,4 @@
-package useacase
+package usecase
 
 import "../domain"
 
