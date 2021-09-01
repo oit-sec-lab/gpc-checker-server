@@ -6,5 +6,3 @@ type Context interface {
     Status(int)
     JSON(int, interface{})
 }
-
-
