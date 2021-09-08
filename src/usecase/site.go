@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"fmt"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities"
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories"
 )
 
@@ -17,18 +17,18 @@ const (
 func NewSiteInteractor(r repositories.ISiteRepository) SiteInteractor {
 	return SiteInteractor{r}
 }
-func (interactor *SiteInteractor) Add(s entities.Site) (err error) {
+func (interactor *SiteInteractor) Add(s site.Site) (err error) {
 	err = interactor.siteRepository.Store(s)
 	return
 }
 
-func (interactor *SiteInteractor) FindByURL(u string) (Site entities.Site, err error) {
+func (interactor *SiteInteractor) FindByURL(u string) (Site site.Site, err error) {
 	exist, e := interactor.siteRepository.Exists(u)
 	if e != nil {
-		return entities.Site{}, e
+		return site.Site{}, e
 	}
 	if !exist {
-		return entities.Site{}, fmt.Errorf(URLNotFound)
+		return site.Site{}, fmt.Errorf(URLNotFound)
 	}
 	Site, err = interactor.siteRepository.FindByURL(u)
 	return
@@ -44,7 +44,7 @@ func (interactor *SiteInteractor) VerifyGPC(u string) (gpc bool, err error) {
 		if e != nil {
 			return false, e
 		}
-		return s.GPC(), e
+		return s.GPC().Enable(), e
 	} else {
 		return interactor.siteRepository.CheckGPC(u)
 	}
