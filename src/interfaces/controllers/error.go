@@ -9,3 +9,4 @@ func NewError(err error) *Error {
 		Message: err.Error(),
 	}
 }
+
