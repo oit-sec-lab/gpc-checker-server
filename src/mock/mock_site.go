@@ -5,10 +5,10 @@
 package mock_repositories
 
 import (
+	entities "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	entities "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities"
 )
 
 // MockISiteRepository is a mock of ISiteRepository interface.
