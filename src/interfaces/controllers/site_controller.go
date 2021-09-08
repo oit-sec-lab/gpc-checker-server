@@ -8,9 +8,11 @@ import
 	"strconv"
 )
 
+
 type SiteController struct {
 	Interactor usecase.SiteInteractor
 }
+
 
 func NewSiteController (sqlHandler database.SqlHandler) *SiteController {
 	return &SiteController{
@@ -21,6 +23,7 @@ func NewSiteController (sqlHandler database.SqlHandler) *SiteController {
 		},
 	}
 }
+
 
 func (controller *SiteController) Create (c Context) {
 	u := domain.Site{}
@@ -33,6 +36,7 @@ func (controller *SiteController) Create (c Context) {
 	c.JSON(201)
 }
 
+
 func (controller *SiteController) Index(c Context) {
     sites, err := controller.Interactor.Sites()
     if err != nil {
@@ -41,6 +45,7 @@ func (controller *SiteController) Index(c Context) {
     }
     c.JSON(200, sites)
 }
+
 
 func (controller *SiteController) Show(c Context) {
     id, _ := strconv.Atoi(c.Param("id"))
