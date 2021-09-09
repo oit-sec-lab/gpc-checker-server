@@ -1,18 +1,21 @@
-package entities
+package site
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
+)
 
 const InvalidURL = "invalid empty url string"
 
 type Site struct {
 	id  int
 	url string
-	gpc bool
+	gpc gpc.Gpc
 }
 
 type Sites []Site
 
-func NewSite(i int, u string, g bool) (Site, error) {
+func NewSite(i int, u string, g gpc.Gpc) (Site, error) {
 	if u == "" {
 		return Site{}, fmt.Errorf(InvalidURL)
 	}
@@ -27,6 +30,6 @@ func (s Site) URL() string {
 	return s.url
 }
 
-func (s Site) GPC() bool {
+func (s Site) GPC() gpc.Gpc {
 	return s.gpc
 }

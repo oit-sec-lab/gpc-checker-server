@@ -1,11 +1,12 @@
-package entities
+package site
 
 import (
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
 	"testing"
 )
 
 func TestSiteGetters(t *testing.T) {
-	s, _ := NewSite(1, "wwww.example.com", true)
+	s, _ := NewSite(1, "www.example.com", gpc.NewGpc(true))
 	tests := []struct {
 		expected interface{}
 		got      interface{}
