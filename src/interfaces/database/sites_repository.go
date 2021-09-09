@@ -2,7 +2,6 @@ package database
 
 import "../../domain"
 
-
 type SiteRepository struct {
     SqlHandler
 }
