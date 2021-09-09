@@ -1,7 +1,6 @@
 package controllers
 
-import
-(
+import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain"
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
 	"github.com/oit-sec-lab/dnt-verify-server/src/usecase"
@@ -51,3 +50,4 @@ func (controller *SiteController) Show(c Context) {
     }
     c.JSON(200, site)
 }
+
