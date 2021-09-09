@@ -50,4 +50,3 @@ func (controller *SiteController) Show(c Context) {
     }
     c.JSON(200, site)
 }
-
