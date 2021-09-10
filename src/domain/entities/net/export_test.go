@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestHttpGetter(t *testing.T) {
+func TestResponseGetter(t *testing.T) {
 	r := NewResponse("200 OK", 200, "HTTP/1.0", "{\n  \"gpc\": true,\n  \"version\": 1\n}")
 	tests := []struct {
 		expected interface{}
