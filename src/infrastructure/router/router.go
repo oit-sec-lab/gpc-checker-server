@@ -12,7 +12,7 @@ func init() {
 
     siteController := controllers.NewSiteController(NewSqlHandler())
 
-    router.POST("/sites", func(c *gin.Context) {siteController.Check(c)})
+    router.POST("/sites", func(c *gin.Context) {siteController.VerifyGPC(c)})
 
     Router = router
 }
