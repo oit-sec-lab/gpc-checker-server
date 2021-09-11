@@ -29,7 +29,7 @@ func (controller *SiteController) Create (c Context) {
 		c.JSON(500, NewError(err))
 		return
 	}
-	c.JSON(201)
+	c.JSON(201, site.GPC)
 }
 
 func (controller *SiteController) Index(c Context) {
@@ -38,7 +38,7 @@ func (controller *SiteController) Index(c Context) {
         c.JSON(500, NewError(err))
         return
     }
-    c.JSON(200, sites)
+    c.JSON(200, site.GPC)
 }
 
 func (controller *SiteController) Show(c Context) {
@@ -48,5 +48,6 @@ func (controller *SiteController) Show(c Context) {
         c.JSON(500, NewError(err))
         return
     }
-    c.JSON(200, site)
+    c.JSON(200, site.GPC)
 }
+
