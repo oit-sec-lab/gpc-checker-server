@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain"
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
+	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/net"
 	"github.com/oit-sec-lab/dnt-verify-server/src/usecase"
 	"strconv"
 )
@@ -24,30 +25,30 @@ func NewSiteController (sqlHandler database.SqlHandler) *SiteController {
 func (controller *SiteController) Create (c Context) {
 	u := domain.Site{}
 	c.Bind(&u)
-	err := controller.Interactor.Add(u)
+	site, err := controller.Interactor.Add(u)
 	if err != nil {
-		c.JSON(500, NewError(err))
-		return
+		return c.JSON(500, NewError(err))
 	}
-	c.JSON(201, site.GPC)
+	return c.JSON(201, site.GPC)
 }
 
 func (controller *SiteController) Index(c Context) {
     sites, err := controller.Interactor.Sites()
     if err != nil {
-        c.JSON(500, NewError(err))
-        return
+        return c.JSON(500, NewError(err))
     }
-    c.JSON(200, site.GPC)
+    return c.JSON(200, site.GPC)
 }
 
 func (controller *SiteController) Show(c Context) {
     id, _ := strconv.Atoi(c.Param("id"))
     site, err := controller.Interactor.SiteById(id)
     if err != nil {
-        c.JSON(500, NewError(err))
-        return
+        return c.JSON(500, NewError(err))
     }
-    c.JSON(200, site.GPC)
+    return c.JSON(200, site.GPC)
 }
 
+func (Interactor *SiteInteractor) VerifyGPC(u string) (gpc bool, err error) {
+	return VerifyGPC(u)
+}
