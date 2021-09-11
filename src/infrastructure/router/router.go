@@ -10,9 +10,9 @@ var Router *gin.Engine
 func init() {
     router := gin.Default()
 
-    userController := controllers.NewUserController(NewSqlHandler())
+    userController := controllers.NewSiteController(NewSqlHandler())
 
-    router.POST("/sites", func(c *gin.Context) { userController.Check(c) })
+    router.POST("/sites", func(c *gin.Context) {userController.Check(c)})
 
     Router = router
 }
