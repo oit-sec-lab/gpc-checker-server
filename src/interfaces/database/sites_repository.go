@@ -16,7 +16,7 @@ func (repo *SiteRepository) Store(s site.Site) (err error) {
     return
 }
 
-func (repo *SiteRepository) FindByURL(identifier string) (site site.Site, err error) {
+func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error) {
     row, err := repo.Query("SELECT id, url, gpc FROM sites WHERE url = ?", identifier)
     defer row.Close()
     if err != nil {
@@ -29,9 +29,9 @@ func (repo *SiteRepository) FindByURL(identifier string) (site site.Site, err er
     if err = row.Scan(&id, &url, &gpc); err != nil {
         return
     }
-    site.id = id
-    site.url = url
-    site.gpc = gpc
+    s.id = id
+    s.url = url
+    s.gpc = gpc
     return
 }
 
