@@ -1,12 +1,12 @@
 package database
 
-import "github.com/oit-sec-lab/dnt-verify-server/src/domain"
+import "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
 
 type SiteRepository struct {
     SqlHandler
 }
 
-func (repo *SiteRepository) Store(s domain.Site) (err error) {
+func (repo *SiteRepository) Store(s site.Site) (err error) {
     result, err := repo.Execute(
         "INSERT INTO sites (url, gpc) VALUES (?,?)", s.url, s.gpc,
     )
@@ -16,7 +16,7 @@ func (repo *SiteRepository) Store(s domain.Site) (err error) {
     return
 }
 
-func (repo *SiteRepository) FindByURL(identifier string) (site domain.Site, err error) {
+func (repo *SiteRepository) FindByURL(identifier string) (site site.Site, err error) {
     row, err := repo.Query("SELECT id, url, gpc FROM sites WHERE url = ?", identifier)
     defer row.Close()
     if err != nil {
