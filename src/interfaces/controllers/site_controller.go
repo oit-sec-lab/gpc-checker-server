@@ -1,7 +1,8 @@
 package controllers
 
 import (
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain"
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
+	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/net"
 	"github.com/oit-sec-lab/dnt-verify-server/src/usecase"
@@ -12,7 +13,11 @@ type SiteController struct {
 	Interactor usecase.SiteInteractor
 }
 
-func NewSiteController (sqlHandler database.SqlHandler) *SiteController {
+func init() {
+
+}
+
+func NewSiteController(sqlHandler database.SqlHandler) *SiteController {
 	return &SiteController{
 		Interactor: usecase.UserInteractor {
 			SiteRepository: &database.SiteRepository {
@@ -22,14 +27,14 @@ func NewSiteController (sqlHandler database.SqlHandler) *SiteController {
 	}
 }
 
-func (controller *SiteController) Create (c Context) {
+func (controller *SiteController) Create(c Context) {
 	u := domain.Site{}
 	c.Bind(&u)
 	site, err := controller.Interactor.Add(u)
 	if err != nil {
 		return c.JSON(500, NewError(err))
 	}
-	return c.JSON(201, site.GPC)
+	return c.JSON(201, site)
 }
 
 func (controller *SiteController) Index(c Context) {
@@ -37,7 +42,7 @@ func (controller *SiteController) Index(c Context) {
     if err != nil {
         return c.JSON(500, NewError(err))
     }
-    return c.JSON(200, site.GPC)
+    return c.JSON(200, site)
 }
 
 func (controller *SiteController) Show(c Context) {
@@ -46,9 +51,10 @@ func (controller *SiteController) Show(c Context) {
     if err != nil {
         return c.JSON(500, NewError(err))
     }
-    return c.JSON(200, site.GPC)
+    return c.JSON(200, site)
 }
 
 func (Interactor *SiteInteractor) VerifyGPC(u string) (gpc bool, err error) {
-	return VerifyGPC(u)
+	return Interactor.JSON(200, VerifyGPC(u))
 }
+
