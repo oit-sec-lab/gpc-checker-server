@@ -1,6 +1,6 @@
 package database
 
-import "../../domain"
+import "github.com/oit-sec-lab/dnt-verify-server/src/domain"
 
 type SiteRepository struct {
     SqlHandler
@@ -33,4 +33,18 @@ func (repo *SiteRepository) FindByURL(identifier string) (site domain.Site, err 
     site.url = url
     site.gpc = gpc
     return
+}
+
+func (repo *SiteRepository) Exist(identifier string) (find bool, err error) {
+	var id int
+	err := repo.QueryRow("SELECT id FROM sites WHERE url = ?", identifier).Scan(&id)
+	switch {
+	case err != nil :
+		return
+	case err == sql.ErrNoRows :
+		find = false
+	default :
+		find = true
+	}
+	return find
 }
