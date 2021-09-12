@@ -2,22 +2,11 @@ package controllers
 
 import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain"
-	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
 	"github.com/oit-sec-lab/dnt-verify-server/src/usecase"
 )
 
 type SiteController struct {
 	Interactor usecase.SiteInteractor
-}
-
-func NewSiteController(sqlHandler database.SqlHandler) *SiteController {
-	return &SiteController{
-		Interactor: usecase.UserInteractor{
-			SiteRepository: &database.SiteRepository{
-				SqlHandler: sqlHandler,
-			},
-		},
-	}
 }
 
 func (controller *SiteController) VerifyGPC(c Context) {
