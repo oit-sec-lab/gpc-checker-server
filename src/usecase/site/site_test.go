@@ -1,4 +1,4 @@
-package usecase
+package site
 
 import (
 	"github.com/golang/mock/gomock"
