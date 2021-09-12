@@ -6,20 +6,21 @@ import (
 	"net/http"
 )
 
-type WebClient struct {
+type HttpHandler struct {
 	client *http.Client
 }
 
-func NewClient() *http.Client {
+func NewHttpHandler() *http.Client {
 	return new(http.Client)
 }
 
-func (webclient *WebClient) GET(url string) (net.Response, error) {
+
+func (handler *HttpHandler) GET(url string) (net.Response, error) {
 	req, e := http.NewRequest(http.MethodGet, url, nil)
 	if e != nil {
 		return net.Response{}, e
 	}
-	r, e := webclient.client.Do(req)
+	r, e := handler.client.Do(req)
 	defer r.Body.Close()
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {

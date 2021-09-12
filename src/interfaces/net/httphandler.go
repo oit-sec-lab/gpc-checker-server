@@ -4,6 +4,6 @@ import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/net"
 )
 
-type IWebClient interface {
+type HttpHandler interface {
 	GET(string) (net.Response, error)
 }

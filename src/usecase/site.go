@@ -3,19 +3,21 @@ package usecase
 import (
 	"fmt"
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories"
+	netRepository "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/net"
+	siteRepository "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/site"
 )
 
 type SiteInteractor struct {
-	siteRepository repositories.ISiteRepository
+	siteRepository siteRepository.ISiteRepository
+	netRepository  netRepository.INetRepository
 }
 
 const (
 	URLNotFound = "url not found"
 )
 
-func NewSiteInteractor(r repositories.ISiteRepository) SiteInteractor {
-	return SiteInteractor{r}
+func NewSiteInteractor(sr siteRepository.ISiteRepository, nr netRepository.INetRepository) SiteInteractor {
+	return SiteInteractor{sr, nr}
 }
 func (interactor *SiteInteractor) Add(s site.Site) (err error) {
 	err = interactor.siteRepository.Store(s)
@@ -46,6 +48,6 @@ func (interactor *SiteInteractor) VerifyGPC(u string) (gpc bool, err error) {
 		}
 		return s.GPC().Enable(), e
 	} else {
-		return interactor.siteRepository.CheckGPC(u)
+		return interactor.netRepository.CheckGPC(u)
 	}
 }
