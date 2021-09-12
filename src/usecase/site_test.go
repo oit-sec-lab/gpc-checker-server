@@ -4,7 +4,8 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	mockSite "github.com/oit-sec-lab/dnt-verify-server/src/mock"
+	mock_net "github.com/oit-sec-lab/dnt-verify-server/src/mock/net"
+	mockSite "github.com/oit-sec-lab/dnt-verify-server/src/mock/site"
 	"testing"
 )
 
@@ -17,7 +18,8 @@ func TestAdd(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockSiteRepository := mockSite.NewMockISiteRepository(ctrl)
-	usecase := NewSiteInteractor(mockSiteRepository)
+	mockNetRepository := mock_net.NewMockINetRepository(ctrl)
+	usecase := NewSiteInteractor(mockSiteRepository, mockNetRepository)
 
 	mockSiteRepository.EXPECT().Store(gomock.Any()).Return(nil)
 
@@ -33,7 +35,8 @@ func TestFindByURL(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockSiteRepository := mockSite.NewMockISiteRepository(ctrl)
-	usecase := NewSiteInteractor(mockSiteRepository)
+	mockNetRepository := mock_net.NewMockINetRepository(ctrl)
+	usecase := NewSiteInteractor(mockSiteRepository, mockNetRepository)
 
 	t.Run("success", func(t *testing.T) {
 		site, _ := site.NewSite(1, TestURL, gpc.NewGpc(true))
@@ -65,7 +68,8 @@ func TestVerifyGPC(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockSiteRepository := mockSite.NewMockISiteRepository(ctrl)
-	usecase := NewSiteInteractor(mockSiteRepository)
+	mockNetRepository := mock_net.NewMockINetRepository(ctrl)
+	usecase := NewSiteInteractor(mockSiteRepository, mockNetRepository)
 
 	t.Run("success", func(t *testing.T) {
 
@@ -81,7 +85,7 @@ func TestVerifyGPC(t *testing.T) {
 
 	t.Run("url not found", func(t *testing.T) {
 		mockSiteRepository.EXPECT().Exists(TestURL).Return(false, nil)
-		mockSiteRepository.EXPECT().CheckGPC(TestURL).Return(true, nil)
+		mockNetRepository.EXPECT().CheckGPC(TestURL).Return(true, nil)
 
 		_, e := usecase.VerifyGPC(TestURL)
 		if e != nil {
