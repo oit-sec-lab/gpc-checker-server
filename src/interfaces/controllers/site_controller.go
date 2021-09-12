@@ -9,22 +9,22 @@ type SiteController struct {
 	Interactor usecase.SiteInteractor
 }
 
-func (controller *SiteController) VerifyGPC(c Context, u string) {
-	sites, err := controller.Interactor.FindByURL(u)
+func (controller *SiteController) VerifyGPC(c Context, s string) {
+	sites, err := controller.Interactor.FindByURL(s)
 	if err != nil {
-		sites, err = controller.Interactor.VerifyGPC(u)
+		sitess, err := controller.Interactor.VerifyGPC(s)
 		if err != nil {
 			c.JSON(200, NewError(err))
 			return
 		}
 		u := site.Site{}
 		c.Bind(&u)
-		err := controller.Interactor.Add(u)
+		err = controller.Interactor.Add(u)
 		if err != nil {
 			c.JSON(500, NewError(err))
 			return
 		}
-		c.JSON(200, sites)
+		c.JSON(200, sitess)
 	} else {
 		c.JSON(200, sites)
 	}
