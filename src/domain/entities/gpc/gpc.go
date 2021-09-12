@@ -1,14 +1,11 @@
 package gpc
 
 type Gpc struct {
-	enable bool
+	Enable bool	`json:"gpc"`
 }
 type Gpcs []Gpc
 
 func NewGpc(e bool) Gpc {
-	return Gpc{enable: e}
+	return Gpc{Enable: e}
 }
 
-func (g Gpc) Enable() bool {
-	return g.enable
-}
