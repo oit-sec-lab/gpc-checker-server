@@ -2,8 +2,8 @@ package database
 
 import(
 	"database/sql"
-	"github.com/go-sql-driver/mysql"
-	"interfaces/database"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
 )
 
 type SqlHandler struct{
@@ -12,7 +12,7 @@ type SqlHandler struct{
 
 func NewSqlHandler() database.SqlHandler{
 	conn, err := sql.Open("mysql", "root:@tcp(db:3306)/sample")
-	id err != nil{
+	if err != nil{
 		panic(err.Error)
 	}
 	sqlHandler := new(SqlHandler)
@@ -20,7 +20,7 @@ func NewSqlHandler() database.SqlHandler{
 	return sqlHandler
 }
 
-func (handler *SqlHandler) Execute(statement string, args ...interface{})(database.Result error){
+func (handler *SqlHandler) Execute(statement string, args ...interface{})(database.Result, error){
 	res := SqlResult{}
 	result, err := handler.Conn.Exec(statement, args...)
 	if err != nil{

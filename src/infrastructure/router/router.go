@@ -2,7 +2,7 @@ package router
 
 import (
     "github.com/gin-gonic/gin"
-	"interfaces/controllers"
+    "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/controllers"
 )
 
 var Router *gin.Engine
