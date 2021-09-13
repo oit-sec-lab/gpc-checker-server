@@ -35,16 +35,16 @@ func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error
     return
 }
 
-func (repo *SiteRepository) Exist(identifier string) (find bool, err error) {
-	var id int
-	err := repo.QueryRow("SELECT id FROM sites WHERE url = ?", identifier).Scan(&id)
-	switch {
-	case err != nil :
-		return
-	case err == sql.ErrNoRows :
-		find = false
-	default :
-		find = true
-	}
-	return find
+func (repo *SiteRepository) Exists(identifier string) (find bool, err error) {
+    row, err := repo.Query("SELECT id FROM sites WHERE url = ?", identifier)
+    if err != nil {
+        return
+    }
+
+    if row.Next() {
+        find = true
+    } else {
+        find = false
+    }
+    return
 }
