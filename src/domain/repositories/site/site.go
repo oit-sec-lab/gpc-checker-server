@@ -1,4 +1,4 @@
-package repositories
+package site
 
 import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
@@ -7,6 +7,5 @@ import (
 type ISiteRepository interface {
 	Store(site.Site) error
 	FindByURL(string) (site.Site, error)
-	CheckGPC(string) (bool, error)
 	Exists(string) (bool, error)
 }
