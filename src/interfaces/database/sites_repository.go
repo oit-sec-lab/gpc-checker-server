@@ -41,14 +41,14 @@ func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error
 }
 
 func (repo *SiteRepository) Exists(identifier string) (find bool, err error) {
-	row, err := repo.Query("SELECT id FROM sites WHERE url = ?", identifier)
+    row, err := repo.Query("SELECT id FROM sites WHERE url = ?", identifier)
     if err != nil {
         return
     }
     defer row.Close()
 
     //if result had row, row.Next() would be true
-	if row.Next() {
+    if row.Next() {
         find = true
     } else {
         find = false
