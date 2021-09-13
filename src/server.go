@@ -1,7 +1,7 @@
 package main
 
-import "infrastructure"
+import "infrastructure/router"
 
 func main(){
-	infrastructure.Router.Run()
+	router.Router.Run()
 }
