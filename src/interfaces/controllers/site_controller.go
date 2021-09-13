@@ -2,30 +2,40 @@ package controllers
 
 import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	"github.com/oit-sec-lab/dnt-verify-server/src/usecase"
+	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/network"
+	usecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
 )
 
-type SiteController struct {
-	Interactor usecase.SiteInteractor
+type Controller struct {
+	siteInteractor usecase.SiteInteractor
 }
 
-func (controller *SiteController) VerifyGPC(c Context, s string) {
-	sites, err := controller.Interactor.FindByURL(s)
+func (controller *Controller) VerifyGPC(c Context, s string) {
+	var net network.GpcRepository
+	sites, err := controller.siteInteractor.FindByURL(s)
+	ii := interface{}(sites)
+	gg := ii.(string)
 	if err != nil {
-		sitess, err := controller.Interactor.VerifyGPC(s)
+		sitess, err := controller.siteInteractor.VerifyGPC(s)
+		i := interface{}(err)
+		g := i.(string)
 		if err != nil {
-			c.JSON(200, NewError(err))
+			c.JSON(net.CheckGPC(g))
 			return
 		}
 		u := site.Site{}
 		c.Bind(&u)
-		err = controller.Interactor.Add(u)
+		err = controller.siteInteractor.Add(u)
 		if err != nil {
-			c.JSON(500, NewError(err))
+			a := interface{}(err)
+			b := a.(string)
+			c.JSON(net.CheckGPC(b))
 			return
 		}
-		c.JSON(200, sitess)
+		d := interface{}(sitess)
+		e := d.(string)
+		c.JSON(net.CheckGPC(e))
 	} else {
-		c.JSON(200, sites)
+		c.JSON(net.CheckGPC(gg))
 	}
 }
