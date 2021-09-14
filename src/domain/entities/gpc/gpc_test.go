@@ -16,8 +16,8 @@ func TestNewGpc(t *testing.T) {
 
 	for _, test := range tests {
 		g := gpc.NewGpc(test.gpc)
-		if test.expected != g.Enable() {
-			t.Fatalf("expected: %v; got: %v\n", test.expected, g.Enable())
+		if test.expected != g.Enable {
+			t.Fatalf("expected: %v; got: %v\n", test.expected, g.Enable)
 		}
 	}
 }
