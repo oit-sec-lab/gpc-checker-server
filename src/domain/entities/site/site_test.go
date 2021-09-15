@@ -22,7 +22,7 @@ func TestNewSite(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s, e := site.NewSite(0, tt.url, gpc.NewGpc(tt.gpc))
+			s, e := site.NewSite(tt.url, gpc.NewGpc(tt.gpc))
 
 			if !tt.shouldFail && e != nil {
 				t.Fatalf("unexpected error: %v", e)

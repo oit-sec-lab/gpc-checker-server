@@ -8,22 +8,17 @@ import (
 const InvalidURL = "invalid empty url string"
 
 type Site struct {
-	id  int
 	url string
 	gpc gpc.Gpc
 }
 
 type Sites []Site
 
-func NewSite(i int, u string, g gpc.Gpc) (Site, error) {
+func NewSite(u string, g gpc.Gpc) (Site, error) {
 	if u == "" {
 		return Site{}, fmt.Errorf(InvalidURL)
 	}
-	return Site{id: i, url: u, gpc: g}, nil
-}
-
-func (s Site) ID() int {
-	return s.id
+	return Site{url: u, gpc: g}, nil
 }
 
 func (s Site) URL() string {
