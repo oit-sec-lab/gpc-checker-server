@@ -49,6 +49,15 @@ func (interactor *SiteInteractor) VerifyGPC(u string) (gpc entitiesGpc.Gpc, err 
 		}
 		return s.GPC(), e
 	} else {
-		return interactor.gpcInteractor.CheckGPC(u)
+		g, err := interactor.gpcInteractor.CheckGPC(u)
+		s, e := entitiesSite.NewSite(u, g)
+		if e != nil {
+			return entitiesGpc.Gpc{}, e
+		}
+		e = interactor.Add(s)
+		if e != nil {
+			return entitiesGpc.Gpc{}, e
+		}
+		return g, err
 	}
 }

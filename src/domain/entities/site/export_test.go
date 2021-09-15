@@ -6,12 +6,11 @@ import (
 )
 
 func TestSiteGetters(t *testing.T) {
-	s, _ := NewSite(1, "www.example.com", gpc.NewGpc(true))
+	s, _ := NewSite("www.example.com", gpc.NewGpc(true))
 	tests := []struct {
 		expected interface{}
 		got      interface{}
 	}{
-		{s.id, s.ID()},
 		{s.url, s.URL()},
 		{s.gpc, s.GPC()},
 	}
