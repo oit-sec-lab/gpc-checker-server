@@ -20,32 +20,25 @@ func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpH
 	}
 }
 
-func (controller *Controller) VerifyGPC(c Context, s string) {
-	var net network.GpcRepository
+func (controller *Controller) VerifyGPC(c Context) {
+	// s := c.Params("url")
+	s := "https://example.com/"
 	sites, err := controller.siteInteractor.FindByURL(s)
-	ii := interface{}(sites)
-	gg := ii.(string)
 	if err != nil {
 		sitess, err := controller.siteInteractor.VerifyGPC(s)
-		i := interface{}(err)
-		g := i.(string)
 		if err != nil {
-			c.JSON(net.CheckGPC(g))
+			c.JSON(500,err)
 			return
 		}
 		u := site.Site{}
 		c.Bind(&u)
 		err = controller.siteInteractor.Add(u)
 		if err != nil {
-			a := interface{}(err)
-			b := a.(string)
-			c.JSON(net.CheckGPC(b))
+			c.JSON(500,err)
 			return
 		}
-		d := interface{}(sitess)
-		e := d.(string)
-		c.JSON(net.CheckGPC(e))
+		c.JSON(200,sitess)
 	} else {
-		c.JSON(net.CheckGPC(gg))
+		c.JSON(200,sites)
 	}
 }
