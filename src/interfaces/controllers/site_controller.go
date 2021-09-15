@@ -11,7 +11,7 @@ import (
 )
 
 type Controller struct {
-	siteInteractor usecase.SiteInteractor
+	siteInteractor siteUsecase.SiteInteractor
 }
 
 func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpHandler) *Controller {
