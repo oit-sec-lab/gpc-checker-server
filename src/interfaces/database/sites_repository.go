@@ -33,7 +33,7 @@ func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error
         return
     }
 
-    s, err = site.NewSite(id, url, gpc)
+    s, err = site.NewSite(url, gpc)
     if err != nil {
         return
     }
