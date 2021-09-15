@@ -4,7 +4,7 @@ import(
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	// "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
-	"server/infrastructure/database"
+	"server/interface/database"
 )
 
 type SqlHandler struct{
