@@ -3,11 +3,21 @@ package controllers
 import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/network"
-	usecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
+	siteUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
+	"server/interfaces/database"
+	// repo "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/site"
+	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
+	// "server/interfaces/network"
 )
 
 type Controller struct {
 	siteInteractor usecase.SiteInteractor
+}
+
+func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpHandler) *Controller {
+	return &Controller{
+		siteInteractor: siteUsecase.NewSiteInteractor(&database.SiteRepository{SqlHandler: sqlHandler},gpcUsecase.NewGpcInteractor(&network.GpcRepository{HttpHandler: httpHandler})),
+	}
 }
 
 func (controller *Controller) VerifyGPC(c Context, s string) {
