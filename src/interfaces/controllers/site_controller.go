@@ -32,6 +32,6 @@ func (controller *Controller) VerifyGPC(c Context) {
 		}
 		c.JSON(200,sitess)
 	} else {
-		c.JSON(200,sites.URL())
+		c.JSON(200,sites.GPC())
 	}
 }
