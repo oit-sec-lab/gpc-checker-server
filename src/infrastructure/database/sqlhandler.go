@@ -1,10 +1,10 @@
 package database
 
 import(
-	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-	// "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
-	"server/interfaces/database"
+        "database/sql"
+        _ "github.com/go-sql-driver/mysql"
+        // "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
+        "server/interfaces/database"
 )
 
 type SqlHandler struct{
@@ -12,7 +12,7 @@ type SqlHandler struct{
 }
 
 func NewSqlHandler() database.SqlHandler{
-	conn, err := sql.Open("mysql", "root:@tcp(db:3306)/sample")
+	conn, err := sql.Open("mysql", "root:password@tcp(db:3306)/testdb")
 	if err != nil{
 		panic(err.Error)
 	}

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
+	//"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/network"
 	siteUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
 	"server/interfaces/database"
@@ -22,23 +22,16 @@ func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpH
 
 func (controller *Controller) VerifyGPC(c Context) {
 	// s := c.Params("url")
-	s := "https://example.com/"
+	s := "https://duckduckgo.com/"
 	sites, err := controller.siteInteractor.FindByURL(s)
 	if err != nil {
 		sitess, err := controller.siteInteractor.VerifyGPC(s)
 		if err != nil {
-			c.JSON(500,err)
-			return
-		}
-		u := site.Site{}
-		c.Bind(&u)
-		err = controller.siteInteractor.Add(u)
-		if err != nil {
-			c.JSON(500,err)
+			c.JSON(500, err)
 			return
 		}
 		c.JSON(200,sitess)
 	} else {
-		c.JSON(200,sites)
+		c.JSON(200,sites.URL())
 	}
 }

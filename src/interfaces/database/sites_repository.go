@@ -10,9 +10,11 @@ type SiteRepository struct {
 }
 
 func (repo *SiteRepository) Store(s site.Site) (err error) {
-    _, err = repo.Execute(
-        "INSERT INTO sites (url, gpc) VALUES (?,?)", s.URL(), s.GPC(),
-    )
+    tmpgpc := s.GPC()
+    inurl := s.URL()
+    ingpc := tmpgpc.Enable
+
+    _, err = repo.Execute("INSERT INTO sites (url, gpc) VALUES (?,?)", inurl, ingpc,)
     if err != nil {
         return
     }
@@ -20,20 +22,24 @@ func (repo *SiteRepository) Store(s site.Site) (err error) {
 }
 
 func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error) {
-    row, err := repo.Query("SELECT id, url, gpc FROM sites WHERE url = ?", identifier)
-    defer row.Close()
+    row, err := repo.Query("SELECT url, gpc FROM sites WHERE url = ?", identifier)
     if err != nil {
         return
     }
-    var id int
-    var url string
-    var gpc gpc.Gpc
+    defer row.Close()
+
+    var inurl string
+    var ingpc gpc.Gpc
+    var tmpgpc bool
     row.Next()
-    if err = row.Scan(&id, &url, &gpc); err != nil {
+    row.Scan(&inurl, &tmpgpc)
+
+    if err != nil {
         return
     }
 
-    s, err = site.NewSite(url, gpc)
+    ingpc = gpc.NewGpc(tmpgpc)
+    s, err = site.NewSite( inurl, ingpc)
     if err != nil {
         return
     }
