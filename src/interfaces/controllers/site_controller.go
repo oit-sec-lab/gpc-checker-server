@@ -20,9 +20,18 @@ func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpH
 	}
 }
 
+type jsondata struct {
+	Id		int		`json:"id"`
+	Url     string  `json:"url"`
+}
+
 func (controller *Controller) VerifyGPC(c Context) {
-	// s := c.Params("url")
-	s := "https://duckduckgo.com/"
+	var si jsondata
+	c.Bind(&si)
+	s := si.Url
+	//i := si.Id
+	//s := c.Param("url")
+	//s := "http://www.oit.ac.jp/"
 	sites, err := controller.siteInteractor.FindByURL(s)
 	if err != nil {
 		sitess, err := controller.siteInteractor.VerifyGPC(s)
