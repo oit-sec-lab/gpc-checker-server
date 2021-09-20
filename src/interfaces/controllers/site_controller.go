@@ -6,6 +6,7 @@ import (
 	"server/interfaces/database"
 	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
 	"fmt"
+	"encoding/json"
 )
 
 type Controller struct {
@@ -15,6 +16,12 @@ type Controller struct {
 type URLs struct {
 	Id int `json:"id"`
 	Url string `json:"url"`
+}
+
+type Ret_Struct struct{
+	Id int `json:"id"`
+	Url string `json:"url"`
+	Gpc bool `json:"gpc"`
 }
 
 type Entity struct{
@@ -27,8 +34,10 @@ func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpH
 	}
 }
 
-func (controller *Controller) VerifyGPC(c Context) {
+func (controller *Controller) VerifyGPC(c Context)(ret_final string){
 	var url_i Entity
+	var ret Ret_Struct
+	ret_slice := []Ret_Struct{}
 	c.Bind(&url_i)
 	for i:=0; i<len(url_i.Sites); i++{
 		s := url_i.Sites[i].Url
@@ -40,9 +49,21 @@ func (controller *Controller) VerifyGPC(c Context) {
 				c.JSON(500, err)
 				return
 			}
-			c.JSON(200,sitess)
+			ret.Id = url_i.Sites[i].Id
+			ret.Url = url_i.Sites[i].Url
+			ret.Gpc = sitess.Enable
+			ret_slice = append(ret_slice,ret)
+			c.JSON(200,ret)
 		} else {
-			c.JSON(200,sites.GPC())
+			ret.Id = url_i.Sites[i].Id                           
+                        ret.Url = sites.URL()                         
+                        ret.Gpc = sites.GPC().Enable
+			ret_slice = append(ret_slice,ret)
+			c.JSON(200,ret)
 		}
 	}
+	ret_final_byte, _ := json.Marshal(ret_slice)
+	ret_final = string(ret_final_byte)
+	fmt.Println(ret_final)
+	return string(ret_final)
 }
