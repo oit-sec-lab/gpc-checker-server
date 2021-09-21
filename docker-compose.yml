@@ -15,6 +15,7 @@ services:
     volumes:
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
 
   server:
     container_name: dnt-verify-server
@@ -26,3 +27,13 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+    environment:
+      DOMAINS: 'localhost -> http://dnt-verify-server:3000/'
+      STAGE: 'local'
+      # FORCE_RENEW: 'true'
