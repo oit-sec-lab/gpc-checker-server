@@ -25,15 +25,17 @@ services:
     tty: true
     ports:
       - "3000:3000"
+      - "8080:8080"
     depends_on:
       - db
-
+      
+  https-portal:
     image: steveltn/https-portal:1
     ports:
       - '80:80'
       - '443:443'
     restart: always
     environment:
-      DOMAINS: 'localhost -> http://dnt-verify-server:3000/'
+      DOMAINS: 'localhost:8080/sites -> http://dnt-verify-server:8080/sites'
       STAGE: 'local'
-      # FORCE_RENEW: 'true'
+    # FORCE_RENEW: 'true'

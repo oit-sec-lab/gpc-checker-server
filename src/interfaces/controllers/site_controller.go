@@ -5,7 +5,8 @@ import (
 	siteUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
 	"server/interfaces/database"
 	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
-	"fmt"
+//	"fmt"
+	"net/url"
 //	"encoding/json"
 )
 
@@ -37,6 +38,8 @@ func (controller *Controller) VerifyGPC(c Context){
     c.Bind(&url_i)
     for i:=0; i<len(url_i); i++{
         s := url_i[i].Url
+        u_parse, _ := url.Parse(s)
+        s = u_parse.Scheme + "://" + u_parse.Host
         sites, err := controller.siteInteractor.FindByURL(s)
         if err != nil {
             sitess, _ := controller.siteInteractor.VerifyGPC(s)
