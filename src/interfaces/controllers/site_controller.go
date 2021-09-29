@@ -5,24 +5,12 @@ import (
 	siteUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
 	"server/interfaces/database"
 	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
-//	"fmt"
+	jsonUsecase "server/usecase/json"
 	"net/url"
-//	"encoding/json"
 )
 
 type Controller struct {
 	siteInteractor siteUsecase.SiteInteractor
-}
-
-type URLs struct {
-	Id int `json:"id"`
-	Url string `json:"url"`
-}
-
-type Ret_Struct struct{
-	Id int `json:"id"`
-	Url string `json:"url"`
-	Gpc bool `json:"gpc"`
 }
 
 func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpHandler) *Controller {
@@ -32,25 +20,20 @@ func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpH
 }
 
 func (controller *Controller) VerifyGPC(c Context){
-    var url_i []URLs
-    var ret Ret_Struct
-    ret_slice := []Ret_Struct{}
+    url_i := jsonUsecase.GenerateURLJsonArray()
+    ret_slice := jsonUsecase.GenerateRetJsonArray()
     c.Bind(&url_i)
     for i:=0; i<len(url_i); i++{
-        s := url_i[i].Url
+        s := jsonUsecase.GetURL(url_i[i])
         u_parse, _ := url.Parse(s)
         s = u_parse.Scheme + "://" + u_parse.Host
         sites, err := controller.siteInteractor.FindByURL(s)
         if err != nil {
             sitess, _ := controller.siteInteractor.VerifyGPC(s)
-            ret.Id = url_i[i].Id
-            ret.Url = url_i[i].Url
-            ret.Gpc = sitess.Enable
+            ret := jsonUsecase.MakeRetJson(jsonUsecase.GetID(url_i[i]),jsonUsecase.GetURL(url_i[i]),sitess.Enable)
             ret_slice = append(ret_slice,ret)
         } else {
-            ret.Id = url_i[i].Id
-            ret.Url = sites.URL()
-            ret.Gpc = sites.GPC().Enable
+            ret := jsonUsecase.MakeRetJson(jsonUsecase.GetID(url_i[i]),sites.URL(),sites.GPC().Enable)
             ret_slice = append(ret_slice,ret)
         }
     }
