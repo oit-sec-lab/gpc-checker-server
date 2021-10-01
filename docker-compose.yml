@@ -1,5 +1,13 @@
-version: '3'
+version: '3.8'
 services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+       - "443:443"
+    restart: always
+    environment:
+      DOMAINS: "test.cyanos -> http://server:8080/"
+      STAGE: local
   db:
     container_name: mysql
     build: ./docker/mysql
@@ -24,17 +32,6 @@ services:
       dockerfile: ./docker/go/Dockerfile
     tty: true
     ports:
-      - "3000:3000"
       - "8080:8080"
     depends_on:
       - db
-    
-  https-portal:
-    image: steveltn/https-portal:1
-    ports:
-      - "80:80"
-      - "443:443"
-    restart: always
-    environment:
-      DOMAINS: "your.domain -> http://server:8080"
-      STAGE: local

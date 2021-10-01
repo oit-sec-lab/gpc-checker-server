@@ -3,9 +3,9 @@ package controllers
 import (
 	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/network"
 	siteUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
-	"server/interfaces/database"
+	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
 	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
-	jsonUsecase "server/usecase/json"
+	jsonUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/json"
 	"net/url"
 )
 

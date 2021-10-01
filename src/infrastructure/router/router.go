@@ -3,10 +3,9 @@ package router
 import (
     "github.com/gin-gonic/gin"
     "github.com/gin-contrib/cors"
-    // "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/controllers"
-    "server/interfaces/controllers"
-    "server/infrastructure/network"
-    "server/infrastructure/database"
+    "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/controllers"
+    "github.com/oit-sec-lab/dnt-verify-server/src/infrastructure/network"
+    "github.com/oit-sec-lab/dnt-verify-server/src/infrastructure/database"
 )
 
 var Router *gin.Engine
