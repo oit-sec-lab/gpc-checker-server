@@ -4,8 +4,8 @@ import (
 	"testing"
 	_ "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
 	_ "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	dbInfra "server/infrastructure/database"
-	dbInter "server/interfaces/database"
+	dbInfra "github.com/oit-sec-lab/dnt-verify-server/src/infrastructure/database"
+	dbInter "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
 )
 
 //insert {duckduckgo.com, true} , {example.com, false}

@@ -19,7 +19,7 @@ func NewSiteController(sqlHandler database.SqlHandler, httpHandler network.HttpH
 	}
 }
 
-func (controller *Controller) VerifyGPC(c Context){
+func (controller *Controller) VerifyGPC(c Context)(con Context, err error){
     url_i := jsonUsecase.GenerateURLJsonArray()
     ret_slice := jsonUsecase.GenerateRetJsonArray()
     c.Bind(&url_i)
@@ -30,6 +30,9 @@ func (controller *Controller) VerifyGPC(c Context){
         sites, err := controller.siteInteractor.FindByURL(s)
         if err != nil {
             sitess, _ := controller.siteInteractor.VerifyGPC(s)
+            if err != nil{
+            	return c, err
+            }
             ret := jsonUsecase.MakeRetJson(jsonUsecase.GetID(url_i[i]),jsonUsecase.GetURL(url_i[i]),sitess.Enable)
             ret_slice = append(ret_slice,ret)
         } else {
