@@ -1,12 +1,19 @@
 package database
 
 import (
+    siteRepo "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/site"
     "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
     "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
 )
 
 type SiteRepository struct {
     SqlHandler
+}
+
+//NewSiteRepository made for testing
+func NewSiteRepository (sqlHandler SqlHandler) siteRepo.ISiteRepository {
+    siteRepository := SiteRepository{sqlHandler}
+    return &siteRepository
 }
 
 func (repo *SiteRepository) Store(s site.Site) (err error) {
@@ -32,7 +39,7 @@ func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error
     var ingpc gpc.Gpc
     var tmpgpc bool
     row.Next()
-    row.Scan(&inurl, &tmpgpc)
+    err := row.Scan(&inurl, &tmpgpc)
 
     if err != nil {
         return
