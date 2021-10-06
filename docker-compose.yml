@@ -1,5 +1,13 @@
-version: '3'
+version: '3.8'
 services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+       - "443:443"
+    restart: always
+    environment:
+      DOMAINS: "test.cyanos -> http://server:8080/"
+      STAGE: local
   db:
     container_name: mysql
     build: ./docker/mysql
@@ -15,6 +23,7 @@ services:
     volumes:
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
 
   server:
     container_name: dnt-verify-server
@@ -23,6 +32,6 @@ services:
       dockerfile: ./docker/go/Dockerfile
     tty: true
     ports:
-      - "3000:3000"
+      - "8080:8080"
     depends_on:
       - db
