@@ -2,7 +2,7 @@ package site
 
 import (
 	"fmt"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
 )
 
 const InvalidURL = "invalid empty url string"

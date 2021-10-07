@@ -1,7 +1,7 @@
 package network
 
 import (
-	interfaceNet "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/network"
+	interfaceNet "github.com/oit-sec-lab/gpc-checker-server/src/interfaces/network"
 	"io/ioutil"
 	"net/http"
 )

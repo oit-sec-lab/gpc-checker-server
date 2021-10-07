@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/network"
-	siteUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site"
-	"github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
-	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
-	jsonUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/json"
+	"github.com/oit-sec-lab/gpc-checker-server/src/interfaces/network"
+	siteUsecase "github.com/oit-sec-lab/gpc-checker-server/src/usecase/site"
+	"github.com/oit-sec-lab/gpc-checker-server/src/interfaces/database"
+	gpcUsecase "github.com/oit-sec-lab/gpc-checker-server/src/usecase/site/gpc"
+	jsonUsecase "github.com/oit-sec-lab/gpc-checker-server/src/usecase/json"
 	"net/url"
 )
 

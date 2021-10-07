@@ -2,11 +2,11 @@ package site
 
 import (
 	"github.com/golang/mock/gomock"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	gpcUsecase "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	mockGpc "github.com/oit-sec-lab/dnt-verify-server/src/mock/gpc"
-	mockSite "github.com/oit-sec-lab/dnt-verify-server/src/mock/site"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
+	gpcUsecase "github.com/oit-sec-lab/gpc-checker-server/src/usecase/site/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
+	mockGpc "github.com/oit-sec-lab/gpc-checker-server/src/mock/gpc"
+	mockSite "github.com/oit-sec-lab/gpc-checker-server/src/mock/site"
 	"testing"
 )
 

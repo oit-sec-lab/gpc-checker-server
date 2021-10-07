@@ -2,10 +2,10 @@ package site
 
 import (
 	"fmt"
-	entitiesGpc "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	entitiesSite "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	siteRepository "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/site"
-	gpcInteractor "github.com/oit-sec-lab/dnt-verify-server/src/usecase/site/gpc"
+	entitiesGpc "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
+	entitiesSite "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
+	siteRepository "github.com/oit-sec-lab/gpc-checker-server/src/domain/repositories/site"
+	gpcInteractor "github.com/oit-sec-lab/gpc-checker-server/src/usecase/site/gpc"
 )
 
 type SiteInteractor struct {
