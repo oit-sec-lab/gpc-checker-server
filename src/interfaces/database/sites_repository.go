@@ -39,7 +39,7 @@ func (repo *SiteRepository) FindByURL(identifier string) (s site.Site, err error
     var ingpc gpc.Gpc
     var tmpgpc bool
     row.Next()
-    err := row.Scan(&inurl, &tmpgpc)
+    err = row.Scan(&inurl, &tmpgpc)
 
     if err != nil {
         return
