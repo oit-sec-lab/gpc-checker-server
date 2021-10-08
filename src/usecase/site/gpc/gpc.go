@@ -1,8 +1,8 @@
 package gpc
 
 import (
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	gpcRepository "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
+	gpcRepository "github.com/oit-sec-lab/gpc-checker-server/src/domain/repositories/gpc"
 )
 
 type GpcInteractor struct {

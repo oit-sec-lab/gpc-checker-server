@@ -26,7 +26,7 @@ services:
       - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
 
   server:
-    container_name: dnt-verify-server
+    container_name: gpc-checker-server
     build:
       context: .
       dockerfile: ./docker/go/Dockerfile

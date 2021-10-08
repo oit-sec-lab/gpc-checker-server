@@ -1,9 +1,9 @@
 package database
 
 import (
-    siteRepo "github.com/oit-sec-lab/dnt-verify-server/src/domain/repositories/site"
-    "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-    "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
+    siteRepo "github.com/oit-sec-lab/gpc-checker-server/src/domain/repositories/site"
+    "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
+    "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
 )
 
 type SiteRepository struct {

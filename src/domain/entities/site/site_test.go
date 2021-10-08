@@ -1,8 +1,8 @@
 package site_test
 
 import (
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
 	"testing"
 )
 

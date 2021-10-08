@@ -2,7 +2,7 @@ package network
 
 import (
 	"encoding/json"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
 )
 
 type GpcRepository struct {

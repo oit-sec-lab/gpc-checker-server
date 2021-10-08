@@ -8,7 +8,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	gpc "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
+	gpc "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
 )
 
 // MockIGpcRepository is a mock of IGpcRepository interface.

@@ -2,9 +2,9 @@ package gpc
 
 import (
 	"github.com/golang/mock/gomock"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	"github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	mockGpc "github.com/oit-sec-lab/dnt-verify-server/src/mock/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
+	"github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
+	mockGpc "github.com/oit-sec-lab/gpc-checker-server/src/mock/gpc"
 	"testing"
 )
 

@@ -8,7 +8,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
-	site "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
+	site "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
 )
 
 // MockISiteRepository is a mock of ISiteRepository interface.

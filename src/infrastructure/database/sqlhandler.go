@@ -3,7 +3,7 @@ package database
 import(
         "database/sql"
         _ "github.com/go-sql-driver/mysql"
-        "github.com/oit-sec-lab/dnt-verify-server/src/server/interfaces/database"
+        "github.com/oit-sec-lab/gpc-checker-server/src/interfaces/database"
 )
 
 type SqlHandler struct{

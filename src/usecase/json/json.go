@@ -1,7 +1,7 @@
 package json
 
 import(
-    entitiesJson "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/json"
+    entitiesJson "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/json"
 )
 
 func GenerateURLJsonArray() ([]entitiesJson.URL_Json){

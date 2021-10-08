@@ -2,10 +2,10 @@ package database_test
 
 import (
 	"testing"
-	_ "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/site"
-	_ "github.com/oit-sec-lab/dnt-verify-server/src/domain/entities/gpc"
-	dbInfra "github.com/oit-sec-lab/dnt-verify-server/src/infrastructure/database"
-	dbInter "github.com/oit-sec-lab/dnt-verify-server/src/interfaces/database"
+	_ "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/site"
+	_ "github.com/oit-sec-lab/gpc-checker-server/src/domain/entities/gpc"
+	dbInfra "github.com/oit-sec-lab/gpc-checker-server/src/infrastructure/database"
+	dbInter "github.com/oit-sec-lab/gpc-checker-server/src/interfaces/database"
 )
 
 //insert {duckduckgo.com, true} , {example.com, false}

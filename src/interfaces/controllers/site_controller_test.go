@@ -6,8 +6,8 @@ import(
     "net/http/httptest"
     "testing"
 	"strings"
-    sqlInfra "github.com/oit-sec-lab/dnt-verify-server/src/infrastructure/database"
-    httpInfra "github.com/oit-sec-lab/dnt-verify-server/src/infrastructure/network"
+    sqlInfra "github.com/oit-sec-lab/gpc-checker-server/src/infrastructure/database"
+    httpInfra "github.com/oit-sec-lab/gpc-checker-server/src/infrastructure/network"
 )
 
 const URLArrayString string = `[{"id":1,"url":"https://example.net/"},{"id":2,"url":"https://example.org/"},{"id":3,"url":"https://duckduckgo.com/"}]`
